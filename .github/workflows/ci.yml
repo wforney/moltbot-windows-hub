@@ -1,0 +1,131 @@
+name: Build and Test
+
+on:
+  push:
+    branches: [ master, main ]
+    tags: [ 'v*' ]
+  pull_request:
+    branches: [ master, main ]
+
+jobs:
+  test:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Setup .NET 10
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 10.0.x
+
+    - name: Restore dependencies
+      run: dotnet restore
+
+    - name: Build
+      run: dotnet build --no-restore -c Debug
+
+    - name: Run Tests
+      run: dotnet test --no-build -c Debug --verbosity normal
+
+  build:
+    needs: test
+    runs-on: windows-latest
+    strategy:
+      matrix:
+        rid: [win-x64, win-arm64]
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Setup .NET 10
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 10.0.x
+
+    - name: Restore Tray App
+      run: dotnet restore src/Moltbot.Tray -r ${{ matrix.rid }}
+
+    - name: Build Tray App (Release)
+      run: dotnet build src/Moltbot.Tray --no-restore -c Release -r ${{ matrix.rid }}
+
+    - name: Publish Tray App
+      run: dotnet publish src/Moltbot.Tray -c Release -r ${{ matrix.rid }} --self-contained -p:PublishSingleFile=true -o publish-${{ matrix.rid }}
+
+    - name: Upload Tray Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: moltbot-tray-${{ matrix.rid }}
+        path: publish-${{ matrix.rid }}/
+
+  build-extension:
+    needs: test
+    runs-on: windows-latest
+    strategy:
+      matrix:
+        platform: [x64, arm64]
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Setup .NET 10
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 10.0.x
+
+    - name: Restore Command Palette Extension
+      run: dotnet restore src/Moltbot.CommandPalette
+
+    - name: Build Command Palette Extension
+      run: dotnet build src/Moltbot.CommandPalette -c Release -p:Platform=${{ matrix.platform }}
+
+    - name: Upload Extension Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: moltbot-commandpalette-${{ matrix.platform }}
+        path: src/Moltbot.CommandPalette/bin/${{ matrix.platform }}/Release/
+
+  release:
+    needs: [build, build-extension]
+    if: startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+    - name: Download win-x64 tray artifact
+      uses: actions/download-artifact@v4
+      with:
+        name: moltbot-tray-win-x64
+        path: artifacts/tray-win-x64
+
+    - name: Download win-arm64 tray artifact
+      uses: actions/download-artifact@v4
+      with:
+        name: moltbot-tray-win-arm64
+        path: artifacts/tray-win-arm64
+
+    - name: Create Release
+      uses: softprops/action-gh-release@v2
+      with:
+        generate_release_notes: true
+        files: |
+          artifacts/tray-win-x64/Moltbot.Tray.exe
+          artifacts/tray-win-arm64/Moltbot.Tray.exe
+        body: |
+          ## Moltbot Windows Hub ${{ github.ref_name }}
+
+          ### Downloads
+          - **x64**: `Moltbot.Tray.exe` (Intel/AMD 64-bit)
+          - **arm64**: `Moltbot.Tray.exe` (Windows on ARM)
+
+          ### Requirements
+          - Windows 10 version 1903 or later
+          - .NET 10 Runtime (or use self-contained exe)
+          - [WebView2 Runtime](https://developer.microsoft.com/en-us/microsoft-edge/webview2/)
+          - Moltbot gateway running locally
+
+          ### Quick Start
+          1. Download the executable for your architecture
+          2. Run `Moltbot.Tray.exe`
+          3. Right-click tray icon → Settings
+          4. Enter your gateway URL and token
