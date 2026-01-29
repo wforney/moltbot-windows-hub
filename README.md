@@ -15,7 +15,7 @@ This monorepo contains three projects:
 ## 🚀 Quick Start
 
 ### Prerequisites
-- .NET 9.0 SDK
+- .NET 10.0 SDK
 - Windows 10/11
 - PowerToys (for Command Palette extension)
 
@@ -35,7 +35,8 @@ Windows system tray companion that connects to your local Moltbot gateway.
 
 ### Features
 - 🦞 Lobster icon in system tray (connected/disconnected states)
-- 💬 Quick Send - Send messages via global hotkey (Ctrl+Shift+M)
+- 💬 Quick Send - Send messages via global hotkey (Ctrl+Alt+Shift+C)
+- 🔄 Auto-updates from GitHub Releases
 - 🌐 Web Chat - Embedded chat window
 - 📊 Status Display - View sessions and channels
 - 🔔 Toast Notifications - Clickable Windows notifications
@@ -99,8 +100,8 @@ moltbot-windows-hub/
 ### Configuration
 
 Settings are stored in:
-- Tray: `%APPDATA%\MoltbotTray\settings.json`
-- Logs: `%APPDATA%\MoltbotTray\moltbot-tray.log`
+- Settings: `%APPDATA%\MoltbotTray\settings.json`
+- Logs: `%LOCALAPPDATA%\MoltbotTray\moltbot-tray.log`
 
 Default gateway: `ws://localhost:18789`
 
