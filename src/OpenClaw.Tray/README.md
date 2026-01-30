@@ -1,4 +1,4 @@
-# Moltbot Windows Tray
+# OpenClaw Windows Tray
 
 A Windows system tray companion for [OpenClaw](https://moltbot.com) — the Windows equivalent of the macOS menu bar app. Provides desktop notifications, embedded chat, live agent activity monitoring, and gateway status tracking.
 
@@ -56,15 +56,15 @@ A Windows system tray companion for [OpenClaw](https://moltbot.com) — the Wind
 - **Esc** — Cancel Quick Send
 
 ### Deep Links
-- Registers `Moltbot://` URI scheme
-- `Moltbot://agent?message=Hello` sends a message to the agent
+- Registers `openclaw://` URI scheme
+- `openclaw://agent?message=Hello` sends a message to the agent
 - Confirmation prompt for safety (bypass with `key` parameter)
 
 ### Quality of Life
 - **ARM64 support** — native builds for Windows on ARM
 - **Auto-start** via Windows Registry
 - **Exponential backoff** on reconnect (1s → 60s)
-- **File logging** to `%LOCALAPPDATA%\MoltbotTray\moltbot-tray.log` (with rotation at 1MB)
+- **File logging** to `%LOCALAPPDATA%\OpenClawTray\moltbot-tray.log` (with rotation at 1MB)
 - **Open Log File** menu item for quick debugging
 - **Single instance** enforcement (mutex)
 - **Proper GDI handle cleanup** (no icon leaks)
@@ -75,14 +75,14 @@ A Windows system tray companion for [OpenClaw](https://moltbot.com) — the Wind
 - Windows 10 version 1903+ (for toast notifications)
 - .NET 10 Runtime (included in self-contained builds)
 - [WebView2 Runtime](https://developer.microsoft.com/en-us/microsoft-edge/webview2/) (for chat panel)
-- Moltbot gateway running (typically in WSL2)
+- OpenClaw gateway running (typically in WSL2)
 
 ## Quick Start
 
 1. Download the latest release from [Releases](https://github.com/shanselman/moltbot-windows-hub/releases)
    - **x64**: For Intel/AMD processors
    - **arm64**: For Windows on ARM (e.g., Surface Pro X, Snapdragon laptops)
-2. Run `MoltbotTray.exe`
+2. Run `OpenClawTray.exe`
 3. Right-click tray icon → Settings
 4. Enter gateway URL (`ws://localhost:18789`) and your token
 5. Done — you'll see the icon turn green when connected
@@ -91,9 +91,9 @@ A Windows system tray companion for [OpenClaw](https://moltbot.com) — the Wind
 
 ```bash
 # In WSL2:
-cat ~/.Moltbot/OpenClaw.json | grep token
+cat ~/.OpenClaw/OpenClaw.json | grep token
 # Or:
-Moltbot config get gateway.auth.token
+OpenClaw config get gateway.auth.token
 ```
 
 ## Build from Source
@@ -128,12 +128,12 @@ dotnet build -p:EnableWindowsTargeting=true -r win-x64
 ├── StatusDetailForm.cs           # Rich status detail view (dark theme)
 ├── NotificationHistoryForm.cs    # Scrollable notification history
 ├── GlobalHotkey.cs               # Ctrl+Alt+Shift+C system-wide hotkey
-├── DeepLinkHandler.cs            # Moltbot:// URI scheme handler
+├── DeepLinkHandler.cs            # openclaw:// URI scheme handler
 ├── SettingsManager.cs            # JSON config with notification filters
 ├── SettingsDialog.cs             # Settings UI (connection, startup, notification filters)
 ├── AutoStartManager.cs           # Windows Registry auto-start
 ├── Logger.cs                     # File + debug logger with rotation
-└── MoltbotTray.csproj           # .NET 10, Windows Forms, WebView2
+└── OpenClawTray.csproj           # .NET 10, Windows Forms, WebView2
 ```
 
 ## macOS Parity Status
@@ -154,7 +154,7 @@ This Windows tray app aims for feature parity with the [Moltbot macOS menu bar a
 | Channel health display | ✅ | ✅ | Telegram, WhatsApp status |
 | Session awareness (main/sub) | ✅ | ✅ | Live session tracking |
 | Usage/token display | ✅ | ✅ | Input/output/total |
-| Deep link URI scheme | ✅ | ✅ | `Moltbot://` |
+| Deep link URI scheme | ✅ | ✅ | `openclaw://` |
 | Global hotkey | — | ✅ | Ctrl+Alt+Shift+C |
 | Auto-start | ✅ | ✅ | Registry-based |
 | Quick send | ✅ | ✅ | Fire-and-forget to main session |
@@ -171,7 +171,7 @@ This Windows tray app aims for feature parity with the [Moltbot macOS menu bar a
 
 ## Settings
 
-Settings are stored in `%APPDATA%\MoltbotTray\settings.json`:
+Settings are stored in `%APPDATA%\OpenClawTray\settings.json`:
 
 ```json
 {
@@ -195,8 +195,8 @@ Settings are stored in `%APPDATA%\MoltbotTray\settings.json`:
 ## Troubleshooting
 
 **Can't connect?**
-- Check gateway: `Moltbot gateway status` in WSL2
-- Verify token matches `~/.Moltbot/OpenClaw.json`
+- Check gateway: `OpenClaw gateway status` in WSL2
+- Verify token matches `~/.OpenClaw/OpenClaw.json`
 - Try WSL2 IP directly: `ws://<wsl-ip>:18789` (`wsl hostname -I`)
 
 **No notifications?**
@@ -206,7 +206,7 @@ Settings are stored in `%APPDATA%\MoltbotTray\settings.json`:
 
 **WebChat blank?**
 - Install [WebView2 Runtime](https://developer.microsoft.com/en-us/microsoft-edge/webview2/)
-- Check logs: `%LOCALAPPDATA%\MoltbotTray\moltbot-tray.log`
+- Check logs: `%LOCALAPPDATA%\OpenClawTray\moltbot-tray.log`
 - Right-click tray → Open Log File
 
 **Global hotkey not working?**

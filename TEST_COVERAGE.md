@@ -1,7 +1,7 @@
 # Test Coverage Summary
 
 ## Overview
-Comprehensive unit test suite added for the Moltbot.Shared library with **88 tests, all passing** ✅
+Comprehensive unit test suite added for the OpenClaw.Shared library with **88 tests, all passing** ✅
 
 ## Test Statistics
 
@@ -47,7 +47,7 @@ Comprehensive unit test suite added for the Moltbot.Shared library with **88 tes
 - ✅ Combined field formatting
 - ✅ Empty state handling
 
-### MoltbotGatewayClientTests (20 tests)
+### OpenClawGatewayClientTests (20 tests)
 
 #### Notification Classification (11 tests)
 - ✅ Health alerts (blood sugar, glucose, CGM, mg/dl)
@@ -161,7 +161,7 @@ This test suite provides:
 
 ## Conclusion
 
-The Moltbot.Shared library now has a solid foundation of unit tests covering all critical display logic and utility methods. The test suite is fast, reliable, and cross-platform compatible. Future development can build on this foundation with confidence.
+The OpenClaw.Shared library now has a solid foundation of unit tests covering all critical display logic and utility methods. The test suite is fast, reliable, and cross-platform compatible. Future development can build on this foundation with confidence.
 
 ---
 

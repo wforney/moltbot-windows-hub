@@ -2,7 +2,7 @@
 
 ## Architecture Overview
 
-This Windows system tray application is built with .NET 10 and Windows Forms, designed to be lightweight and efficient while providing seamless integration with the Moltbot gateway. It mirrors the macOS menu bar app's functionality for Windows users.
+This Windows system tray application is built with .NET 10 and Windows Forms, designed to be lightweight and efficient while providing seamless integration with the OpenClaw gateway. It mirrors the macOS menu bar app's functionality for Windows users.
 
 ### Component Architecture
 
@@ -16,7 +16,7 @@ This Windows system tray application is built with .NET 10 and Windows Forms, de
                      └────────┬────────────────┘
                               │ events
                      ┌────────▼────────────────┐
-                     │  MoltbotGatewayClient   │
+                     │  OpenClawGatewayClient   │
                      │  - WebSocket connection  │
                      │  - Protocol v3 handshake │
                      │  - Event parsing         │
@@ -31,11 +31,11 @@ This Windows system tray application is built with .NET 10 and Windows Forms, de
 |-----------|------|---------|
 | **Program** | `Program.cs` | Entry point, single-instance mutex, URI scheme registration |
 | **TrayApplication** | `TrayApplication.cs` | Main `ApplicationContext` managing the tray icon, context menu, and UI event dispatch |
-| **MoltbotGatewayClient** | `MoltbotGatewayClient.cs` | WebSocket client implementing gateway protocol v3 with event parsing, session tracking, and usage monitoring |
-| **SettingsManager** | `SettingsManager.cs` | JSON-based settings persistence in `%APPDATA%\MoltbotTray\` |
+| **OpenClawGatewayClient** | `OpenClawGatewayClient.cs` | WebSocket client implementing gateway protocol v3 with event parsing, session tracking, and usage monitoring |
+| **SettingsManager** | `SettingsManager.cs` | JSON-based settings persistence in `%APPDATA%\OpenClawTray\` |
 | **SettingsDialog** | `SettingsDialog.cs` | Settings UI with URL/token config, test connection (with timeout), and notification preferences |
-| **Logger** | `Logger.cs` | Thread-safe file + debug logger with automatic rotation (1MB), writes to `%LOCALAPPDATA%\MoltbotTray\moltbot-tray.log` |
-| **DeepLinkHandler** | `DeepLinkHandler.cs` | `Moltbot://` URI scheme registration and processing for cross-app integration |
+| **Logger** | `Logger.cs` | Thread-safe file + debug logger with automatic rotation (1MB), writes to `%LOCALAPPDATA%\OpenClawTray\moltbot-tray.log` |
+| **DeepLinkHandler** | `DeepLinkHandler.cs` | `openclaw://` URI scheme registration and processing for cross-app integration |
 | **WebChatForm** | `WebChatForm.cs` | WebView2-based chat panel (singleton) with toolbar, fallback to browser |
 | **QuickSendDialog** | `QuickSendDialog.cs` | Lightweight dialog for sending messages (supports Ctrl+Enter) |
 | **StatusDetailForm** | `StatusDetailForm.cs` | Rich status view showing gateway connection, sessions, channels, usage, and app info |
@@ -93,7 +93,7 @@ An activity badge (small corner dot) appears during tool execution:
 
 ### Settings Storage
 
-Settings are stored as JSON in `%APPDATA%\MoltbotTray\settings.json`:
+Settings are stored as JSON in `%APPDATA%\OpenClawTray\settings.json`:
 
 ```json
 {
@@ -107,10 +107,10 @@ Settings are stored as JSON in `%APPDATA%\MoltbotTray\settings.json`:
 
 ### Deep Links
 
-The app registers `Moltbot://` URI scheme for cross-app integration:
+The app registers `openclaw://` URI scheme for cross-app integration:
 
 ```
-Moltbot://agent?message=Hello&key=optional-auth-key
+openclaw://agent?message=Hello&key=optional-auth-key
 ```
 
 Without a key, the user is prompted before sending. With a key, the message is sent directly.
