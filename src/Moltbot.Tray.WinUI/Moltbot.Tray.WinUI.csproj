@@ -11,7 +11,10 @@
     <ApplicationIcon>Assets\moltbot.ico</ApplicationIcon>
     <RootNamespace>MoltbotTray</RootNamespace>
     <ApplicationManifest>app.manifest</ApplicationManifest>
-    <!-- Bundle Windows App SDK so users don't need to install it separately -->
+  </PropertyGroup>
+
+  <!-- Bundle Windows App SDK when publishing self-contained -->
+  <PropertyGroup Condition="'$(SelfContained)' == 'true'">
     <WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
   </PropertyGroup>
 
