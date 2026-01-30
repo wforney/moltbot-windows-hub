@@ -127,7 +127,7 @@ jobs:
     - name: Upload Extension Artifact
       uses: actions/upload-artifact@v4
       with:
-        name: moltbot-commandpalette-${{ matrix.platform }}
+        name: openclaw-commandpalette-${{ matrix.platform }}
         path: src/OpenClaw.CommandPalette/bin/${{ matrix.platform }}/Debug/
 
   release:
@@ -155,13 +155,13 @@ jobs:
     - name: Download win-x64 cmdpal artifact
       uses: actions/download-artifact@v4
       with:
-        name: moltbot-commandpalette-x64
+        name: openclaw-commandpalette-x64
         path: artifacts/cmdpal-x64
 
     - name: Download win-arm64 cmdpal artifact
       uses: actions/download-artifact@v4
       with:
-        name: moltbot-commandpalette-arm64
+        name: openclaw-commandpalette-arm64
         path: artifacts/cmdpal-arm64
 
     # Create ZIP files for Updatum auto-update (needs "win-x64" in filename)

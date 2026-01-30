@@ -1,6 +1,6 @@
 # 🦞 OpenClaw Windows Hub
 
-A Windows companion suite for [OpenClaw](https://moltbot.com) - the AI-powered personal assistant.
+A Windows companion suite for [OpenClaw](https://openclaw.ai) - the AI-powered personal assistant.
 
 *Made with 🦞 love by Scott Hanselman and Molty*
 
@@ -62,7 +62,7 @@ Modern Windows 11-style system tray companion that connects to your local OpenCl
 
 ### Mac Parity Status
 
-Comparing against [moltbot-menubar](https://github.com/magimetal/moltbot-menubar) (macOS Swift menu bar app):
+Comparing against [openclaw-menubar](https://github.com/magimetal/openclaw-menubar) (macOS Swift menu bar app):
 
 | Feature | Mac | Windows | Notes |
 |---------|-----|---------|-------|
@@ -174,3 +174,4 @@ MIT License - see [LICENSE](LICENSE)
 ---
 
 *Formerly known as Moltbot, formerly known as Clawdbot*
+

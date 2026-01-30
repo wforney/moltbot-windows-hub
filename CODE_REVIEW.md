@@ -18,7 +18,7 @@ This document provides a comprehensive code review of the OpenClaw Windows Hub r
 1. **Architecture & Design Patterns**
    - Clean separation between networking (Shared) and UI (Tray)
    - Event-driven architecture with proper use of C# events
-   - Dependency injection for logging (IMoltbotLogger interface)
+   - Dependency injection for logging (IOpenClawLogger interface)
    - IDisposable pattern correctly implemented
 
 2. **Async/Await Usage**
@@ -40,7 +40,7 @@ This document provides a comprehensive code review of the OpenClaw Windows Hub r
 
 #### 1. JSON Parsing Robustness (Medium Priority)
 
-**Location**: `MoltbotGatewayClient.ParseSessions()` (lines 638-717)
+**Location**: `OpenClawGatewayClient.ParseSessions()` (lines 638-717)
 
 **Issue**: Complex parsing logic with multiple format variations makes it fragile to schema changes.
 
@@ -61,7 +61,7 @@ else if (sessions.ValueKind == JsonValueKind.Object) { /* ... */ }
 
 #### 2. Reconnection Loop Edge Cases (Medium Priority)
 
-**Location**: `MoltbotGatewayClient.ReconnectWithBackoffAsync()` (lines 164-185)
+**Location**: `OpenClawGatewayClient.ReconnectWithBackoffAsync()` (lines 164-185)
 
 **Issue**: Multiple paths can trigger reconnection simultaneously:
 - Manual reconnect in `CheckHealthAsync()` (line 92)
@@ -232,7 +232,7 @@ public async Task SendChatMessageAsync(string message)
    - `SessionInfo`: Display text, ShortKey for various key formats
    - `GatewayUsageInfo`: Token formatting (K/M suffixes), cost display
 
-2. **MoltbotGatewayClient Utilities** - Coverage of:
+2. **OpenClawGatewayClient Utilities** - Coverage of:
    - `ClassifyNotification()`: All notification types (health, urgent, email, etc.)
    - `ClassifyTool()`: All tool-to-activity mappings
    - `ShortenPath()`: Path truncation edge cases
@@ -260,7 +260,7 @@ public async Task SendChatMessageAsync(string message)
 
 ### 🐛 Issue: TruncateLabel Off-by-One Error
 
-**Location**: `MoltbotGatewayClient.TruncateLabel()` line 849
+**Location**: `OpenClawGatewayClient.TruncateLabel()` line 849
 
 **Current Code**:
 ```csharp
@@ -364,3 +364,4 @@ All critical functionality has been validated through the new unit test suite. T
 **Reviewer**: GitHub Copilot Coding Agent
 **Test Coverage**: 88 tests, all passing
 **Overall Grade**: B+ (Good, with room for improvement)
+

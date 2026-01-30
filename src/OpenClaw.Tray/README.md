@@ -1,6 +1,6 @@
 # OpenClaw Windows Tray
 
-A Windows system tray companion for [OpenClaw](https://moltbot.com) — the Windows equivalent of the macOS menu bar app. Provides desktop notifications, embedded chat, live agent activity monitoring, and gateway status tracking.
+A Windows system tray companion for [OpenClaw](https://openclaw.ai) — the Windows equivalent of the macOS menu bar app. Provides desktop notifications, embedded chat, live agent activity monitoring, and gateway status tracking.
 
 ## Features
 
@@ -138,7 +138,7 @@ dotnet build -p:EnableWindowsTargeting=true -r win-x64
 
 ## macOS Parity Status
 
-This Windows tray app aims for feature parity with the [Moltbot macOS menu bar app](https://moltbot.com-macos).
+This Windows tray app aims for feature parity with the [OpenClaw macOS menu bar app](https://openclaw.ai-macos).
 
 | Feature | macOS | Windows | Notes |
 |---------|:-----:|:-------:|-------|
@@ -222,5 +222,7 @@ MIT
 
 - Built with .NET 10, Windows Forms, and [WebView2](https://developer.microsoft.com/en-us/microsoft-edge/webview2/)
 - Toast notifications via [Microsoft.Toolkit.Uwp.Notifications](https://github.com/CommunityToolkit/WindowsCommunityToolkit)
-- Part of the [Moltbot](https://moltbot.com) ecosystem
+- Part of the [OpenClaw](https://openclaw.ai) ecosystem
+
+
 

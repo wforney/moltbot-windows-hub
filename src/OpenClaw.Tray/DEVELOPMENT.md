@@ -166,3 +166,4 @@ gh run list --repo shanselman/moltbot-windows-hub --limit 1
 - Single-instance enforced via Mutex (deep link forwarding to running instance TODO)
 - Tray icon tooltip limited to 63 characters (full detail shown in context menu activity row)
 
+
