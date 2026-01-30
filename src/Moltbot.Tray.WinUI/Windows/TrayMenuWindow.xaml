@@ -8,11 +8,9 @@
     Width="280"
     Height="400">
 
-    <Window.SystemBackdrop>
-        <DesktopAcrylicBackdrop/>
-    </Window.SystemBackdrop>
+    <!-- Backdrop disabled - causes crashes after idle periods -->
 
-    <Border Background="Transparent"
+    <Border Background="{ThemeResource AcrylicBackgroundFillColorDefaultBrush}"
             BorderBrush="{ThemeResource SurfaceStrokeColorDefaultBrush}"
             BorderThickness="1"
             CornerRadius="8">

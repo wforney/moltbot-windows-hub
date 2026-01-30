@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.IO.Pipes;
 using System.Linq;
 using System.Threading;
@@ -60,10 +61,49 @@ public partial class App : Application
     private TrayMenuWindow? _trayMenuWindow;
 
     private string[]? _startupArgs;
+    private static readonly string CrashLogPath = Path.Combine(
+        Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
+        "MoltbotTray", "crash.log");
 
     public App()
     {
         InitializeComponent();
+        
+        // Hook up crash handlers
+        this.UnhandledException += OnUnhandledException;
+        AppDomain.CurrentDomain.UnhandledException += OnDomainUnhandledException;
+        TaskScheduler.UnobservedTaskException += OnUnobservedTaskException;
+    }
+
+    private void OnUnhandledException(object sender, Microsoft.UI.Xaml.UnhandledExceptionEventArgs e)
+    {
+        LogCrash("UnhandledException", e.Exception);
+        e.Handled = true; // Try to prevent crash
+    }
+
+    private void OnDomainUnhandledException(object sender, System.UnhandledExceptionEventArgs e)
+    {
+        LogCrash("DomainUnhandledException", e.ExceptionObject as Exception);
+    }
+
+    private void OnUnobservedTaskException(object? sender, UnobservedTaskExceptionEventArgs e)
+    {
+        LogCrash("UnobservedTaskException", e.Exception);
+        e.SetObserved(); // Prevent crash
+    }
+
+    private static void LogCrash(string source, Exception? ex)
+    {
+        try
+        {
+            var dir = Path.GetDirectoryName(CrashLogPath);
+            if (!string.IsNullOrEmpty(dir) && !Directory.Exists(dir))
+                Directory.CreateDirectory(dir);
+
+            var message = $"\n[{DateTime.Now:yyyy-MM-dd HH:mm:ss.fff}] {source}\n{ex}\n";
+            File.AppendAllText(CrashLogPath, message);
+        }
+        catch { /* Can't log the crash logger crash */ }
     }
 
     protected override async void OnLaunched(LaunchActivatedEventArgs args)
