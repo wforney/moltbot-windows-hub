@@ -12,7 +12,7 @@ using WinUIEx;
 namespace OpenClawTray.Dialogs;
 
 /// <summary>
-/// Quick send dialog for sending messages to Moltbot.
+/// Quick send dialog for sending messages to OpenClaw.
 /// </summary>
 public sealed class QuickSendDialog : WindowEx
 {
@@ -27,7 +27,7 @@ public sealed class QuickSendDialog : WindowEx
         _client = client;
         
         // Window setup
-        Title = "Quick Send — Moltbot";
+        Title = "Settings — OpenClaw Tray";
         this.SetWindowSize(400, 200);
         this.CenterOnScreen();
         this.SetIcon(IconHelper.GetStatusIconPath(ConnectionStatus.Connected));

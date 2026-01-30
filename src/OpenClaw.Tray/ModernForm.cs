@@ -5,10 +5,10 @@ using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using Microsoft.Win32;
 
-namespace MoltbotTray;
+namespace OpenClawTray;
 
 /// <summary>
-/// Base form with Windows 11 modern styling - dark/light mode, rounded corners, Moltbot branding.
+/// Base form with Windows 11 modern styling - dark/light mode, rounded corners, OpenClaw branding.
 /// Inherit from this for consistent look across all dialogs.
 /// </summary>
 public class ModernForm : Form
@@ -123,7 +123,7 @@ public class ModernForm : Form
     }
 
     /// <summary>
-    /// Creates a styled button with Moltbot branding.
+    /// Creates a styled button with OpenClaw branding.
     /// </summary>
     protected Button CreateModernButton(string text, bool isPrimary = false)
     {

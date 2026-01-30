@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace MoltbotTray;
+namespace OpenClawTray;
 
 /// <summary>
 /// Shows recent notification history in a modern styled list view.
@@ -58,7 +58,7 @@ public class NotificationHistoryForm : ModernForm
 
     private void InitializeComponent()
     {
-        Text = "Notification History — Moltbot Tray";
+        Text = "Notification History — OpenClaw Tray";
         Size = new Size(680, 500);
         MinimumSize = new Size(480, 340);
         FormBorderStyle = FormBorderStyle.Sizable;

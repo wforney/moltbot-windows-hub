@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.Win32;
 
-namespace MoltbotTray;
+namespace OpenClawTray;
 
 /// <summary>
-/// Embeds the Moltbot WebChat UI via WebView2 with modern Windows 11 styling.
+/// Embeds the OpenClaw WebChat UI via WebView2 with modern Windows 11 styling.
 /// </summary>
 public class WebChatForm : ModernForm
 {
@@ -45,7 +45,7 @@ public class WebChatForm : ModernForm
 
     private void InitializeComponent()
     {
-        Text = "Moltbot Chat";
+        Text = "OpenClaw Chat";
         Size = new Size(520, 750);
         MinimumSize = new Size(380, 450);
         FormBorderStyle = FormBorderStyle.Sizable;

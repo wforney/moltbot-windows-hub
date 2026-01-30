@@ -19,7 +19,7 @@ public static class DeepLinkHandler
             var exePath = Environment.ProcessPath ?? System.Reflection.Assembly.GetExecutingAssembly().Location;
 
             using var key = Registry.CurrentUser.CreateSubKey(UriSchemeKey);
-            key?.SetValue("", "URL:Moltbot Protocol");
+            key?.SetValue("", "URL:OpenClaw Protocol");
             key?.SetValue("URL Protocol", "");
 
             using var iconKey = key?.CreateSubKey("DefaultIcon");

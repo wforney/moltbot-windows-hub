@@ -2,7 +2,7 @@ using System;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace MoltbotTray;
+namespace OpenClawTray;
 
 public enum UpdateDialogResult
 {
@@ -17,7 +17,7 @@ public class UpdateDialog : ModernForm
 
     public UpdateDialog(string version, string releaseNotes)
     {
-        Text = "Update Available — Moltbot Tray";
+        Text = "Update Available — OpenClaw Tray";
         Size = new Size(500, 420);
         Icon = IconHelper.GetLobsterIcon();
 

@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using Microsoft.Win32;
 
-namespace MoltbotTray;
+namespace OpenClawTray;
 
 /// <summary>
 /// Modern flyout menu with Windows 11 styling - dark/light mode, rounded corners, acrylic blur.

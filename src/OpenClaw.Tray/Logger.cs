@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.IO;
 using OpenClaw.Shared;
 
-namespace MoltbotTray;
+namespace OpenClawTray;
 
 /// <summary>
 /// Simple file + debug logger for troubleshooting.

@@ -18,16 +18,16 @@ using System.Threading.Tasks;
 using Updatum;
 using WinUIEx;
 
-namespace MoltbotTray;
+namespace OpenClawTray;
 
 public partial class App : Application
 {
-    private const string PipeName = "MoltbotTray-DeepLink";
+    private const string PipeName = "OpenClawTray-DeepLink";
     
     internal static readonly UpdatumManager AppUpdater = new("shanselman", "moltbot-windows-hub")
     {
         FetchOnlyLatestRelease = true,
-        InstallUpdateSingleFileExecutableName = "Moltbot.Tray.WinUI",
+        InstallUpdateSingleFileExecutableName = "OpenClaw.Tray.WinUI",
     };
 
     private TrayIcon? _trayIcon;
@@ -179,7 +179,7 @@ public partial class App : Application
     private void InitializeTrayIcon()
     {
         var iconPath = IconHelper.GetStatusIconPath(ConnectionStatus.Disconnected);
-        _trayIcon = new TrayIcon(1, iconPath, "Moltbot Tray — Disconnected");
+        _trayIcon = new TrayIcon(1, iconPath, "OpenClaw Tray — Disconnected");
         _trayIcon.IsVisible = true;
         _trayIcon.Selected += OnTrayIconSelected;
         _trayIcon.ContextMenu += OnTrayContextMenu;
@@ -299,7 +299,7 @@ public partial class App : Application
         menu.AddMenuItem($"Status: {_currentStatus}", statusIcon, "status");
 
         // Activity (if any)
-        if (_currentActivity != null && _currentActivity.Kind != Moltbot.Shared.ActivityKind.Idle)
+        if (_currentActivity != null && _currentActivity.Kind != OpenClaw.Shared.ActivityKind.Idle)
         {
             menu.AddMenuItem(_currentActivity.DisplayText, _currentActivity.Glyph, "", isEnabled: false);
         }
@@ -394,7 +394,7 @@ public partial class App : Application
         // Brand header
         var brandItem = new MenuFlyoutItem
         {
-            Text = "🦞 Moltbot Tray",
+            Text = "🦞 OpenClaw Tray",
             IsEnabled = false
         };
         flyout.Items.Add(brandItem);
@@ -416,7 +416,7 @@ public partial class App : Application
         flyout.Items.Add(statusItem);
 
         // Activity (if any)
-        if (_currentActivity != null && _currentActivity.Kind != Moltbot.Shared.ActivityKind.Idle)
+        if (_currentActivity != null && _currentActivity.Kind != OpenClaw.Shared.ActivityKind.Idle)
         {
             var activityItem = new MenuFlyoutItem
             {
@@ -645,7 +645,7 @@ public partial class App : Application
         try
         {
             var builder = new ToastContentBuilder()
-                .AddText(notification.Title ?? "Moltbot")
+                .AddText(notification.Title ?? "OpenClaw")
                 .AddText(notification.Message);
 
             builder.Show();
@@ -731,13 +731,13 @@ public partial class App : Application
         if (_trayIcon == null) return;
 
         var status = _currentStatus;
-        if (_currentActivity != null && _currentActivity.Kind != Moltbot.Shared.ActivityKind.Idle)
+        if (_currentActivity != null && _currentActivity.Kind != OpenClaw.Shared.ActivityKind.Idle)
         {
             status = ConnectionStatus.Connecting; // Use connecting icon for activity
         }
 
         var iconPath = IconHelper.GetStatusIconPath(status);
-        var tooltip = $"Moltbot Tray — {_currentStatus}";
+        var tooltip = $"OpenClaw Tray — {_currentStatus}";
         
         if (_currentActivity != null && !string.IsNullOrEmpty(_currentActivity.DisplayText))
         {

@@ -2,7 +2,7 @@ using System;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace MoltbotTray;
+namespace OpenClawTray;
 
 public partial class QuickSendDialog : ModernForm
 {
@@ -20,14 +20,14 @@ public partial class QuickSendDialog : ModernForm
 
     private void InitializeComponent()
     {
-        Text = "Quick Send — Moltbot";
+        Text = "Quick Send — OpenClaw";
         Size = new Size(520, 300);
         ShowInTaskbar = true;
         TopMost = true;
         Icon = IconHelper.GetLobsterIcon();
 
         // Header label
-        var label = CreateModernLabel("Send a message to Moltbot:");
+        var label = CreateModernLabel("Send a message to OpenClaw:");
         label.Location = new Point(20, 20);
         label.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
         label.ForeColor = AccentColor;

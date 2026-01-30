@@ -3,10 +3,10 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace MoltbotTray;
+namespace OpenClawTray;
 
 /// <summary>
-/// First-run welcome dialog to help users get started with Moltbot.
+/// First-run welcome dialog to help users get started with OpenClaw.
 /// </summary>
 public class WelcomeDialog : ModernForm
 {
@@ -58,7 +58,7 @@ public class WelcomeDialog : ModernForm
         // Instructions
         var instructionsLabel = CreateModernLabel(
             "To get started, you'll need an API token from your\n" +
-            "Moltbot dashboard. Click below to learn how to get one,\n" +
+            "OpenClaw dashboard. Click below to learn how to get one,\n" +
             "then paste your token in Settings.");
         instructionsLabel.Font = new Font("Segoe UI", 9.5f);
         instructionsLabel.Location = new Point(30, y);

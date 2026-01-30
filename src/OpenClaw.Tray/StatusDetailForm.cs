@@ -4,7 +4,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 
-namespace MoltbotTray;
+namespace OpenClawTray;
 
 /// <summary>
 /// Shows detailed gateway status, sessions, channels, and usage in a rich view.
@@ -44,7 +44,7 @@ public class StatusDetailForm : ModernForm
 
     private void InitializeComponent()
     {
-        Text = "Moltbot Status";
+        Text = "OpenClaw Status";
         Size = new Size(540, 520);
         MinimumSize = new Size(420, 380);
         FormBorderStyle = FormBorderStyle.Sizable;

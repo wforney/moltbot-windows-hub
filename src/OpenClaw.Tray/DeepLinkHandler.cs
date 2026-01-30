@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Windows.Forms;
 
-namespace MoltbotTray;
+namespace OpenClawTray;
 
 /// <summary>
 /// Handles openclaw:// URI scheme registration and processing.
@@ -14,8 +14,8 @@ namespace MoltbotTray;
 /// </summary>
 public static class DeepLinkHandler
 {
-    private const string UriScheme = "Moltbot";
-    private const string FriendlyName = "Moltbot Agent Command";
+    private const string UriScheme = "OpenClaw";
+    private const string FriendlyName = "OpenClaw Agent Command";
 
     /// <summary>
     /// Registers the openclaw:// URI scheme in the Windows registry.
@@ -128,8 +128,8 @@ public static class DeepLinkHandler
         {
             var preview = message.Length > 100 ? message[..100] + "…" : message;
             var result = MessageBox.Show(
-                $"A deep link wants to send this message to Moltbot:\n\n\"{preview}\"\n\nAllow?",
-                "Moltbot Deep Link",
+                $"A deep link wants to send this message to OpenClaw:\n\n\"{preview}\"\n\nAllow?",
+                "OpenClaw Deep Link",
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question);
 

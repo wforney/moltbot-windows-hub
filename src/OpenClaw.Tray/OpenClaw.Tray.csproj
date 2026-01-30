@@ -9,10 +9,10 @@
     <EnableWindowsTargeting>true</EnableWindowsTargeting>
     <NoWarn>MSB3277</NoWarn>
     <ApplicationIcon>openclaw.ico</ApplicationIcon>
-    <AssemblyTitle>Moltbot Windows Tray</AssemblyTitle>
-    <AssemblyDescription>Windows system tray companion app for Moltbot</AssemblyDescription>
+    <AssemblyTitle>OpenClaw Windows Tray</AssemblyTitle>
+    <AssemblyDescription>OpenClaw</AssemblyDescription>
     <AssemblyCompany>Scott Hanselman</AssemblyCompany>
-    <AssemblyProduct>Moltbot Tray</AssemblyProduct>
+    <AssemblyProduct>OpenClaw Tray</AssemblyProduct>
     <Copyright>Copyright © 2026 Scott Hanselman</Copyright>
     <Version>1.0.0</Version>
     <FileVersion>1.0.0</FileVersion>

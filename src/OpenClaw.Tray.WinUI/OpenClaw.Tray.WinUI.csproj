@@ -9,7 +9,7 @@
     <WindowsPackageType>None</WindowsPackageType>
     <EnableMsixTooling>true</EnableMsixTooling>
     <ApplicationIcon>Assets\openclaw.ico</ApplicationIcon>
-    <RootNamespace>MoltbotTray</RootNamespace>
+    <RootNamespace>OpenClawTray</RootNamespace>
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
 

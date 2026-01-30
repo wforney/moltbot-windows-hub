@@ -17,7 +17,7 @@ public sealed class WelcomeDialog : WindowEx
 
     public WelcomeDialog()
     {
-        Title = "Welcome to Moltbot";
+        Title = "Welcome to OpenClaw";
         this.SetWindowSize(480, 440);
         this.CenterOnScreen();
         this.SetIcon("Assets\\moltbot.ico");
@@ -49,7 +49,7 @@ public sealed class WelcomeDialog : WindowEx
         });
         headerPanel.Children.Add(new TextBlock
         {
-            Text = "Welcome to Moltbot!",
+            Text = "Welcome to OpenClaw!",
             Style = (Style)Application.Current.Resources["TitleTextBlockStyle"],
             VerticalAlignment = VerticalAlignment.Center
         });
@@ -61,7 +61,7 @@ public sealed class WelcomeDialog : WindowEx
         
         content.Children.Add(new TextBlock
         {
-            Text = "Moltbot Tray is your Windows companion for Moltbot, the AI-powered personal assistant.",
+            Text = "OpenClaw Tray is your Windows companion for OpenClaw, the AI-powered personal assistant.",
             TextWrapping = TextWrapping.Wrap
         });
 
@@ -73,7 +73,7 @@ public sealed class WelcomeDialog : WindowEx
         });
 
         var bulletList = new StackPanel { Spacing = 4, Margin = new Thickness(16, 0, 0, 0) };
-        bulletList.Children.Add(new TextBlock { Text = "• A running Moltbot gateway" });
+        bulletList.Children.Add(new TextBlock { Text = "• A running OpenClaw gateway" });
         bulletList.Children.Add(new TextBlock { Text = "• Your API token from the dashboard" });
         gettingStarted.Children.Add(bulletList);
         content.Children.Add(gettingStarted);

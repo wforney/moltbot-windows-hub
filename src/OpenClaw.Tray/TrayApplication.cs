@@ -9,9 +9,9 @@ using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using ActivityKind = Moltbot.Shared.ActivityKind;
+using ActivityKind = OpenClaw.Shared.ActivityKind;
 
-namespace MoltbotTray;
+namespace OpenClawTray;
 
 public class TrayApplication : ApplicationContext
 {
@@ -87,7 +87,7 @@ public class TrayApplication : ApplicationContext
         _contextMenu = new ContextMenuStrip();
 
         // Title
-        var titleItem = new ToolStripMenuItem("⚡ Moltbot Tray") { Enabled = false };
+        var titleItem = new ToolStripMenuItem("⚡ OpenClaw Tray") { Enabled = false };
         _contextMenu.Items.Add(titleItem);
         _contextMenu.Items.Add(new ToolStripSeparator());
 
@@ -143,7 +143,7 @@ public class TrayApplication : ApplicationContext
         _notifyIcon = new NotifyIcon
         {
             Icon = CreateStatusIcon(ConnectionStatus.Disconnected),
-            Text = "Moltbot Tray — Disconnected",
+            Text = "OpenClaw Tray — Disconnected",
             Visible = true
         };
         _notifyIcon.MouseClick += OnTrayIconClick;
@@ -509,8 +509,8 @@ public class TrayApplication : ApplicationContext
             SafeDestroyIcon(oldIcon);
 
             var tooltip = _currentActivity?.Kind != ActivityKind.Idle && !string.IsNullOrEmpty(_currentActivity?.DisplayText)
-                ? $"Moltbot — {_currentActivity.DisplayText}"
-                : $"Moltbot — {status}";
+                ? $"OpenClaw — {_currentActivity.DisplayText}"
+                : $"OpenClaw — {status}";
             
             // Add last check time (culture-aware)
             var checkTime = _lastCheckTime.ToShortTimeString();

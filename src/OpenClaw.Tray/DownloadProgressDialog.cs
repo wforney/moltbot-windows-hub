@@ -4,7 +4,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using Updatum;
 
-namespace MoltbotTray;
+namespace OpenClawTray;
 
 public class DownloadProgressDialog : ModernForm
 {
@@ -17,7 +17,7 @@ public class DownloadProgressDialog : ModernForm
         _updater = updater;
         _updater.PropertyChanged += UpdaterOnPropertyChanged;
 
-        Text = "Downloading Update — Moltbot Tray";
+        Text = "Downloading Update — OpenClaw Tray";
         Size = new Size(420, 160);
         ControlBox = false;
         Icon = IconHelper.GetLobsterIcon();

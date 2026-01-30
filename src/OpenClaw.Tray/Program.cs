@@ -1,4 +1,4 @@
-using MoltbotTray;
+using OpenClawTray;
 using System;
 using System.Diagnostics;
 using System.IO.Pipes;
@@ -7,16 +7,16 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Updatum;
 
-namespace MoltbotTray;
+namespace OpenClawTray;
 
 internal static class Program
 {
-    private const string PipeName = "MoltbotTray-DeepLink";
+    private const string PipeName = "OpenClawTray-DeepLink";
     
     internal static readonly UpdatumManager AppUpdater = new("shanselman", "moltbot-windows-hub")
     {
         FetchOnlyLatestRelease = true,
-        InstallUpdateSingleFileExecutableName = "Moltbot.Tray",
+        InstallUpdateSingleFileExecutableName = "OpenClaw.Tray",
     };
 
     [STAThread]
@@ -33,7 +33,7 @@ internal static class Program
             }
             else
             {
-                MessageBox.Show("Moltbot Tray is already running.", "Moltbot Tray",
+                MessageBox.Show("OpenClaw Tray is already running.", "OpenClaw Tray",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             return;
@@ -123,7 +123,7 @@ internal static class Program
             }
 
             var confirmResult = MessageBox.Show(
-                "The update has been downloaded. Moltbot Tray will now restart to install the update.\n\nContinue?",
+                "The update has been downloaded. OpenClaw Tray will now restart to install the update.\n\nContinue?",
                 "Install Update",
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question);
@@ -170,7 +170,7 @@ internal static class Program
         catch (Exception ex)
         {
             Logger.Warn($"Failed to forward deep link: {ex.Message}");
-            MessageBox.Show($"Moltbot Tray is running but couldn't process the deep link.\n\nPlease try again.",
+            MessageBox.Show($"OpenClaw Tray is running but couldn't process the deep link.\n\nPlease try again.",
                 "Deep Link Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
     }

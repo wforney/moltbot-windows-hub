@@ -4,7 +4,7 @@ using System;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace MoltbotTray;
+namespace OpenClawTray;
 
 public partial class SettingsDialog : ModernForm
 {
@@ -42,7 +42,7 @@ public partial class SettingsDialog : ModernForm
 
     private void InitializeComponent()
     {
-        Text = "Settings — Moltbot Tray";
+        Text = "Settings — OpenClaw Tray";
         Size = new Size(480, 600);
         ShowInTaskbar = false;
         AutoScroll = false;
@@ -215,7 +215,7 @@ public partial class SettingsDialog : ModernForm
         {
             new ToastContentBuilder()
                 .AddText("🦞 Test Notification")
-                .AddText("This is what a Moltbot notification looks like!")
+                .AddText("This is what an OpenClaw notification looks like!")
                 .Show();
         }
         catch

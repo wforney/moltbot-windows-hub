@@ -254,7 +254,7 @@ public class OpenClawGatewayClient : IDisposable
                     version = "1.0.0",
                     platform = "windows",
                     mode = "cli",
-                    displayName = "Moltbot Windows Tray"
+                    displayName = "OpenClaw Windows Tray"
                 },
                 role = "operator",
                 scopes = new[] { "operator.admin", "operator.approvals", "operator.pairing" },
@@ -874,7 +874,7 @@ public class OpenClawGatewayClient : IDisposable
         if (lower.Contains("build") || lower.Contains("ci ") ||
             lower.Contains("deploy"))
             return ("🔨 Build", "build");
-        return ("🤖 Moltbot", "info");
+        return ("🤖 OpenClaw", "info");
     }
 
     // --- Utility ---

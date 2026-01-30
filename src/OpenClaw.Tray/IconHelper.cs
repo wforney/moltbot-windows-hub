@@ -1,6 +1,6 @@
 using System.Drawing;
 
-namespace MoltbotTray;
+namespace OpenClawTray;
 
 /// <summary>
 /// Shared icon helper for creating the lobster icon used throughout the app.

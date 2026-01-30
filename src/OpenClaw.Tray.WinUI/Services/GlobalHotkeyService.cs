@@ -151,13 +151,13 @@ public class GlobalHotkeyService : IDisposable
             {
                 lpfnWndProc = Marshal.GetFunctionPointerForDelegate(_wndProcDelegate),
                 hInstance = GetModuleHandle(null),
-                lpszClassName = "MoltbotHotkeyWindow"
+                lpszClassName = "OpenClawHotkeyWindow"
             };
 
             RegisterClass(ref wndClass);
 
             // Create message-only window (HWND_MESSAGE parent)
-            _hwnd = CreateWindowEx(0, "MoltbotHotkeyWindow", "", 0, 0, 0, 0, 0,
+            _hwnd = CreateWindowEx(0, "OpenClawHotkeyWindow", "", 0, 0, 0, 0, 0,
                 new IntPtr(-3), // HWND_MESSAGE
                 IntPtr.Zero, GetModuleHandle(null), IntPtr.Zero);
 
